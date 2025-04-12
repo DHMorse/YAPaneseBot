@@ -45,7 +45,7 @@ async def on_member_update(before: discord.Member, after: discord.Member):
             channel: discord.TextChannel = discord.utils.get(after.guild.text_channels, name="yapatron")
             await channel.send(f"{after.mention} has been deported")
 
-            async for message in channel.history(limit=5):
+            async for message in channel.history(limit=7):
                 if message.author == after:
                     await message.delete()
 
