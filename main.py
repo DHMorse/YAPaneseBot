@@ -54,7 +54,7 @@ async def on_member_update(before: discord.Member, after: discord.Member):
 async def on_message(message: discord.Message):
     # Check if any anime term is in the message and only send one response
     if not message.author.bot:
-        if any(anime in message.content.lower() for anime in LIST_OF_ANIME) or any(anime in message.author.name.lower() for anime in LIST_OF_ANIME):
+        if any(anime in message.content.lower() for anime in LIST_OF_ANIME) or any(anime in message.author.name.lower() for anime in LIST_OF_ANIME) or (message.guild and message.author.nick and any(anime in message.author.nick.lower() for anime in LIST_OF_ANIME)):
             await message.reply(f'{ANIME_GIF_URL}')
             return
 
