@@ -52,7 +52,12 @@ async def on_member_update(before: discord.Member, after: discord.Member):
 
 @bot.event
 async def on_member_timeout(member: discord.Member):
-    channel = discord.utils.get(member.guild.text_channels, name="yapatron")
+    channel: discord.TextChannel | None = discord.utils.get(member.guild.text_channels, name="yapatron")
+
+    if not channel:
+        print(f"Channel not found for yapatron")
+        return
+
     if channel:
         await channel.send(f"{member.mention} has been deported")
 
