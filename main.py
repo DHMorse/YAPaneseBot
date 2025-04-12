@@ -8,7 +8,8 @@ from typing import Optional
 from constants import (
     LANGUAGE_ROLE_NAMES,
     LIST_OF_ANIME,
-    YAPATRON_CHANNEL_ID
+    YAPATRON_CHANNEL_ID,
+    DOOM_GUY_ID
 )
 
 dotenv.load_dotenv()
@@ -48,11 +49,16 @@ async def on_message(message: discord.Message):
     if 'porn' in message.content.lower():
         await message.add_reaction("❌")
 
+    if message.mentions:
+        for mention in message.mentions:
+            if mention.id == DOOM_GUY_ID:
+                await message.reply("Check out this super family friendly [book](https://www.wattpad.com/story/392586616-the-hollow-born)")
+
     await bot.process_commands(message)
 
 # Send custom message on timeout
 @bot.event
-async def on_member_update(before, after):
+async def on_member_update(before, after) -> None:
     if before.timeout != after.timeout:
         if after.timeout:
             channel: discord.TextChannel = bot.get_channel(YAPATRON_CHANNEL_ID)

@@ -1,5 +1,7 @@
 YAPATRON_CHANNEL_ID: int = 1359994252427268126
 
+DOOM_GUY_ID: int = 1235011539648516136 
+
 LANGUAGE_ROLE_NAMES: list[str] = [
     "Fluent Japanese",
     "English",
