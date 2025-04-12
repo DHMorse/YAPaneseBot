@@ -41,13 +41,14 @@ async def on_member_update(before: discord.Member, after: discord.Member):
                 await after.remove_roles(polyglotRole)
 
     if before.timeout != after.timeout:
-        if after.timeout:
-            channel: discord.TextChannel = discord.utils.get(after.guild.text_channels, name="yapatron")
-            await channel.send(f"{after.mention} has been deported")
+        if after.timeout and not before.timeout:
+            channel = discord.utils.get(after.guild.text_channels, name="yapatron")
+            if channel:
+                await channel.send(f"{after.mention} has been deported")
 
-            async for message in channel.history(limit=7):
-                if message.author == after:
-                    await message.delete()
+                async for message in channel.history(limit=7):
+                    if message.author == after:
+                        await message.delete()
 
 @bot.event
 async def on_message(message: discord.Message):
