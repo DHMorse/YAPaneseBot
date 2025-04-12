@@ -41,13 +41,10 @@ async def on_member_update(before: discord.Member, after: discord.Member):
                 await after.remove_roles(polyglotRole)
 
     if before.timeout != after.timeout:
-        if after.timeout is True:
+        if after.timeout:
             channel: discord.TextChannel = discord.utils.get(after.guild.text_channels, name="yapatron")
             await channel.send(f"{after.mention} has been deported")
 
-            time.sleep(1)
-
-            # delete the last 10 messages from that user
             async for message in channel.history(limit=5):
                 if message.author == after:
                     await message.delete()
