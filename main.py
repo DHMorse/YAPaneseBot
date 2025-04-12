@@ -3,6 +3,7 @@ import dotenv
 import discord
 from discord.ext import commands
 from typing import Optional
+import time
 
 from constants import (
     LANGUAGE_ROLE_NAMES,
@@ -43,6 +44,13 @@ async def on_member_update(before: discord.Member, after: discord.Member):
         if after.timeout is True:
             channel: discord.TextChannel = discord.utils.get(after.guild.text_channels, name="yapatron")
             await channel.send(f"{after.mention} has been deported")
+
+            time.sleep(1)
+
+            # delete the last 10 messages from that user
+            async for message in channel.history(limit=5):
+                if message.author == after:
+                    await message.delete()
 
 @bot.event
 async def on_message(message: discord.Message):
