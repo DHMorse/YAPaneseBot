@@ -1,11 +1,14 @@
 import os
+import random
 import dotenv 
 import discord
 from discord.ext import commands
 from typing import Optional
-import asyncio
 
-from constants import LANGUAGE_ROLE_NAMES
+from constants import (
+    LANGUAGE_ROLE_NAMES,
+    LIST_OF_ANIME
+)
 
 dotenv.load_dotenv()
 
@@ -30,10 +33,29 @@ async def on_member_update(before: discord.Member, after: discord.Member):
         else:
             await after.remove_roles(discord.utils.get(after.guild.roles, name="Polyglot"))
 
+@bot.event
+async def on_message(message: discord.Message):
+    # Check if any anime term is in the message and only send one response
+    if not message.author.bot:
+        if any(anime in message.content.lower() for anime in LIST_OF_ANIME):
+            await message.channel.send("https://tenor.com/view/anime-gif-7279870884587886608")
+            return
+
+    if 'gay' in message.content.lower():
+        await message.add_reaction("🏳️‍🌈")
+
+    if 'porn' in message.content.lower():
+        await message.add_reaction("❌")
+
+    await bot.process_commands(message)
 
 @bot.command(name="hello")
 async def hello(ctx):
     await ctx.send("Hello!")
+
+@bot.command(name="shakespare")
+async def gay(ctx):
+    await ctx.send("https://tenor.com/view/anime-gif-7279870884587886608")
 
 if __name__ == "__main__":
     bot.run(botToken)

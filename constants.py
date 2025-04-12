@@ -11,3 +11,30 @@ LANGUAGE_ROLE_NAMES: list[str] = [
     "Arabic",
     "Romanian",
 ]
+
+LIST_OF_ANIME: list[str] = [
+    "anime",
+    "one piece",
+    "naruto",
+    "bleach",
+    "dragon ball",
+    "attack on titan",
+    "my hero academia",
+    "jujutsu kaisen",
+    "one punch man",
+    "death note",
+    "hunter x hunter",
+    "fairy tail",
+    "black clover",
+    "tokyo ghoul",
+    "demon slayer",
+    "jojo",
+    "sword art online",
+    "sao",
+    "toradora",
+    "clannad",
+    "kanon",
+    "angel beats",
+    "school days",
+    "school hours"
+]
