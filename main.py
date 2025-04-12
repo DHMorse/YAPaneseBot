@@ -7,7 +7,8 @@ from typing import Optional
 
 from constants import (
     LANGUAGE_ROLE_NAMES,
-    LIST_OF_ANIME
+    LIST_OF_ANIME,
+    YAPATRON_CHANNEL_ID
 )
 
 dotenv.load_dotenv()
@@ -49,13 +50,17 @@ async def on_message(message: discord.Message):
 
     await bot.process_commands(message)
 
+# Send custom message on timeout
+@bot.event
+async def on_member_update(before, after):
+    if before.timeout != after.timeout:
+        if after.timeout:
+            channel: discord.TextChannel = bot.get_channel(YAPATRON_CHANNEL_ID)
+            await channel.send(f"{after.mention} has been deported")
+
 @bot.command(name="hello")
 async def hello(ctx):
     await ctx.send("Hello!")
-
-@bot.command(name="shakespare")
-async def gay(ctx):
-    await ctx.send("https://tenor.com/view/anime-gif-7279870884587886608")
 
 if __name__ == "__main__":
     bot.run(botToken)
