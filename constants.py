@@ -44,5 +44,16 @@ LIST_OF_ANIME: list[str] = [
     "kanon",
     "angel beats",
     "school days",
-    "school hours"
+    "school hours",
+    "bungo stray dogs",
+    "kanju no.8",
+    "buddy daddies",
+    "given",
+    "sasaki and miyano",
+    "yuri on ice",
+    "fire force",
+    "blue lock",
+    "phantom forces",
+    "toilet bound hanako kun",
+    "berserk"
 ]
