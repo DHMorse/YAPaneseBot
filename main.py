@@ -82,8 +82,8 @@ async def on_message(message: discord.Message):
     if message.mentions:
         for mention in message.mentions:
             if mention.id == DOOM_GUY_ID:
-                randInt: int = random.randint(0, 10)
-                if randInt > 8:
+                randInt: int = random.randint(0, 100)
+                if randInt > 95:
                     await message.reply(f"Check out this super family friendly [book]({DOOM_GUY_BOOK_URL})")
 
     await bot.process_commands(message)
