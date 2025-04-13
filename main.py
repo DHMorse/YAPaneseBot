@@ -3,7 +3,7 @@ import dotenv
 import discord
 from discord.ext import commands
 from typing import Optional
-import time
+import random
 
 from constants import (
     LANGUAGE_ROLE_NAMES,
@@ -82,7 +82,8 @@ async def on_message(message: discord.Message):
     if message.mentions:
         for mention in message.mentions:
             if mention.id == DOOM_GUY_ID:
-                await message.reply(f"Check out this super family friendly [book]({DOOM_GUY_BOOK_URL})")
+                if random.random() < 0.5:
+                    await message.reply(f"Check out this super family friendly [book]({DOOM_GUY_BOOK_URL})")
 
     await bot.process_commands(message)
 
